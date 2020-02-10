@@ -1,0 +1,64 @@
+/* vim:ft=css */
+
+/* Heavily inspired by a theme on github.com/jlndk/dotfiles */
+
+#window {
+    fullscreen: true;
+    border:  0px 0px 0px 0px;
+    background-color: hsla(0, 0, 0, 0.3);
+}
+
+#mainbox {
+    border:  0;
+    padding: 0;
+    background-color: transparent;
+    margin: 35% 30% 30% 30%;
+}
+
+#inputbar {
+    orientation: vertical;
+    background-color: transparent;
+    children:   [ promtContainer, entry];
+}
+
+#promtContainer {
+    orientation: horizontal;
+    background-color: transparent;
+    children:   [ dummy, prompt, dummy];
+}
+
+#dummy {
+    background-color: transparent;
+}
+
+#prompt {
+    background-color: transparent;
+    color: white;
+    font: "Fira Code Light 30";
+}
+
+#entry {
+    background-color: transparent;
+    color: white;
+    padding: 10px 20px;
+    font: "Fira Code Medium 16";
+}
+
+#listview {
+    background-color: transparent;
+}
+
+#element {
+    background-color: transparent;
+    font: "Fira Code Regular 14";
+    padding: 5px 20px;
+    color: white;
+}
+
+#element selected {
+    background-color: hsla(0, 0, 50%, 0.5);
+}
+
+#textbox {
+    background-color: red;
+}

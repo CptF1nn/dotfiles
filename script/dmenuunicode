@@ -1,0 +1,17 @@
+#!/usr/bin/zsh
+
+# The famous "get a menu of emojis to copy" script.
+
+# Must have xclip installed to even show menu.
+
+chosen=$(grep -v "#" ~/.script/emojiBoard/emoji | rofi -dmenu)
+
+[ "$chosen" != "" ] || exit
+
+c=$(echo "$chosen" | sed "s/ .*//")
+echo "$c" | tr -d n | xclip -selection clipboard
+notify-send " copied to clipboard." &
+
+s=$(echo "$chosen" | sed "s/.*; //" | awk {print })
+echo "$s" | tr -d n | xclip
+notify-send " copied to primary." &
