@@ -1,0 +1,70 @@
+!! Colorscheme
+
+! special
+*.foreground: #D1DDDF
+*.background: #353839
+*.cursorColor: #afbfbf
+
+! black
+*color0: #2E3436
+*color8: #555753
+
+! red
+*color1: #CC0000
+*color9: #EF2929
+
+! green
+*color2: #75a02d
+*color10: #9fca56
+
+! yellow
+*color3: #b6a03e
+*color11: #e6cd69
+
+! blue
+*color4: #2190b4
+*color12: #55b5db
+
+! purple
+*color5: #8258a5
+*color13: #a074c4
+
+! aqua
+*color6: #10ae93
+*color14: #55dbbe
+
+! white
+*color7: #d6d6d6
+*color15: #ffffff
+
+! 256 color space
+*color16:                        #db7b55
+*color17:                        #8a553f
+*color18:                        #8ec43d
+*color19:                        #3B758C
+*color20:                        #43a5d5
+*color21:                        #eeeeee
+
+URxvt.underlineColor: #818D8F
+
+!! URxvt Appearance
+
+URxvt.font: xft:Cascadia Mono:style=Regular:size=12
+
+URxvt.scrollBar: false
+!URxvt.saveLines: 0
+URxvt.transparent: false
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.fading: 15
+URxvt.pointerBlank: true
+
+URxvt*depth: 32
+URxvt*background: rgba:3500/3800/3900/dd00
+
+URxvt*perl-ext:
+URxvt*perl-ext-common:
+
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintfull

@@ -61,5 +61,8 @@
     },
     "editor.fontFamily": "'Fira Code'",
     "editor.fontWeight": "400",
-    "editor.fontLigatures": true
+    "editor.fontLigatures": true,
+    "peacock.affectAccentBorders": true,
+    "peacock.affectTabActiveBorder": true,
+    "peacock.surpriseMeOnStartup": true
 }

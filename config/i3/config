@@ -3,11 +3,14 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 for_window [class=".*"] border pixel 0
-#for_window [class="Gnome-terminal"] 
+#for_window [class="Gnome-terminal"]
 
 gaps inner 5
+
+exec --no-startup-id gnome-screensaver
 
 exec --no-startup-id feh --bg-fill /home/simon/Pictures/gas.jpg
 
@@ -34,11 +37,25 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+set $shutter shutter -n -e
+set $screenout -o ~/Pictures/Screenshots/%Y-%m-%d_%T.png
+set $clip cat ~/tmp.png | xclip -selection clipboard -t image/png; rm ~/tmp.png
+
+bindsym $mod+Shift+s exec --no-startup-id $shutter -s $screenout
+bindsym Print exec --no-startup-id $shutter -f $screenout
+bindsym $mod+Print exec --no-startup-id $shutter -a $screenout
+
+bindsym $mod+b exec --no-startup-id firefox
+bindsym $mod+d exec --no-startup-id ~/.script/spaceUp discord discord
+bindsym $mod+Control+Home exec --no-startup-id xkb-switch -s us
+bindsym $mod+Home exec --no-startup-id xkb-switch -s dk
+bindsym $mod+x exec --no-startup-id ~/.script/spaceUp passwords /usr/bin/keepassxc
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ on
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- on
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master 0%+ toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D default sset Master 5%+ on
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D default sset Master 5%- on
+bindsym XF86AudioMute exec --no-startup-id amixer -D default sset Master 0%+ toggle
 # Does not work? Do I have that button?
  # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -52,7 +69,9 @@ bindsym Control+XF86MonBrightnessDown exec --no-startup-id $HOME/.script/brightn
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Shift+Return exec --no-startup-id urxvt -e ranger
+for_window [class="urxvt"] bindsym button4 exec --no-startup-id "xte 'key Up' 'key Up' 'key Up'"
 
 # kill focused window
 bindsym $mod+Shift+w kill
@@ -61,7 +80,7 @@ bindsym $mod+BackSpace kill
 
 # start dmenu (a program launcher)
  #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec rofi -show run
+ #bindsym $mod+d exec rofi -show run
  #bindcode $mod+65 exec dmenu_run
 bindcode $mod+65 exec rofi -show run
 
@@ -99,6 +118,11 @@ bindsym $mod+Shift+Control+Right exec ~/.script/arrangeHDMI right
 bindsym $mod+Shift+Control+space exec ~/.script/arrangeHDMI duplicate
 
 ##  Focus  ##
+
+# focus back
+workspace_auto_back_and_forth yes
+bindsym $mod+Tab workspace next_on_output
+
 
 # change focus
 bindsym $mod+j focus left
@@ -179,17 +203,19 @@ set $back mode "default"
 bindsym $mod+Control+Left resize shrink width 10 px or 10 ppt
 bindsym $mod+Control+Down resize grow height 10 px or 10 ppt
 bindsym $mod+Control+Right resize grow width 10 px or 10 ppt
-bindsym $mod+Control+Up resize shrink height 1+ px or 10 ppt
+bindsym $mod+Control+Up resize shrink height 10 px or 10 ppt
 
 #######################
 ##  SYSTEM CRITICAL  ##
 #######################
 
-set $exitTitle "(R)estart, (L)ock, (S)hutdown, (E)xit - (Esc)ape to cancel"
+set $exitTitle "(R)estart, (L)ock, (S)hutdown, (H)ibernate - (Esc)ape to cancel"
 
 mode $exitTitle {
         bindsym r exec shutdown -r now
         bindsym s exec shutdown now
+		bindsym l exec --no-startup-id gnome-screensaver-command -l
+		bindsym h exec systemctl suspend # Yes, it technically only suspends.
 
         bindsym Escape $back
         bindsym Return $back

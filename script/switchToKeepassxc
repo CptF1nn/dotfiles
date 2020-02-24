@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+i3-msg workspace passwords
+
+if [ $(ps x | grep 'keepassxc' | wc -l) = 1 ]; then
+		keepassxc &
+fi

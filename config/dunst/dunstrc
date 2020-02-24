@@ -124,7 +124,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<span size="large" weight="bold">%s</span>\n<span size="small">%b</span>\n<span size="x-small">%a</span>"
+    format = "<span size="medium" weight="bold">%s</span>\n<span size="small">%b</span>\n<span size="x-small">%a</span>"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
